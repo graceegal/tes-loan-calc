@@ -1,12 +1,12 @@
 "use strict";
 
-const $calcForm = document.querySelector("#calc-form");
-const $amountInput = document.querySelector("#loan-amount");
-const $yearsInput = document.querySelector("#loan-years");
-const $rateInput = document.querySelector("#loan-rate");
-const $resultArea = document.querySelector("#result-area");
+const $calcForm = document.querySelector("#calc-form") as HTMLFormElement;
+const $amountInput = document.querySelector("#loan-amount") as HTMLInputElement;
+const $yearsInput = document.querySelector("#loan-years") as HTMLInputElement;
+const $rateInput = document.querySelector("#loan-rate") as HTMLInputElement;
+const $resultArea = document.querySelector("#result-area") as HTMLSpanElement;
 
-const resultHistory = [];
+const resultHistory: number[] = [];
 
 /** Retrieve form values.
  *
@@ -14,7 +14,7 @@ const resultHistory = [];
  *
  * */
 
-function getFormValues() {
+function getFormValues(): { amount: number, years: number, rate: number; } {
   return {
     amount: Number($amountInput.value),
     years: Number($yearsInput.value),
@@ -24,7 +24,7 @@ function getFormValues() {
 
 /** Calculate monthly payment and return. */
 
-function calcMonthlyPayment({ amount, years, rate }) {
+function calcMonthlyPayment({ amount, years, rate }: { amount: number, years: number, rate: number; }): number {
   const monthsInYear = 12;
   const monthlyRate = (rate / 100) / monthsInYear;
   const n = Math.floor(years * monthsInYear);
